@@ -6,10 +6,13 @@ import './post.css';
 
 
 export default function Post({post}) {
+
+const PF = 'http://localhost:5000/images/';
+
     return (
         <div className="post">
             {post.photo && (
-                <img src={post.photo} alt="" className="postImg" />
+                <img src={PF + post.photo} alt="" className="postImg" />
             )}
             
             <div className="postInfo">
