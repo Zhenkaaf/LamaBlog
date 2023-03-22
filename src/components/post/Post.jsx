@@ -1,23 +1,28 @@
+import { Link } from 'react-router-dom';
 import './post.css';
 
 
 
 
 
-export default function Post() {
+export default function Post({post}) {
     return (
         <div className="post">
-            <img src="https://mobimg.b-cdn.net/v3/fetch/90/905911947c2947e6dda5a8d9aa2af088.jpeg" alt="" className="postImg" />
+            {post.photo && (
+                <img src={post.photo} alt="" className="postImg" />
+            )}
+            
             <div className="postInfo">
                 <div className="postCats">
-                    <span className="postCat">Music</span>
-                    <span className="postCat">Life</span>
+                    {post.categories.map(category => (
+                         <span className="postCat">{category.name}</span>
+                    ))}
                 </div>
-                <span className="postTitle">Lorem ipsum dolor.</span>
+                <Link className='link' to={`/post/${post._id}`}> <span className="postTitle">{post.title}</span></Link>
                 <hr />
-                <span className="postDate">1 hour ago</span>
+                <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
             </div>
-            <p className="postDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates praesentium quis, ullam tenetur autem cupiditate at necessitatibus eos repellat amet. Error, atque. Deleniti fugit molestias eligendi adipisci quasi perferendis distinctio Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates praesentium quis, ullam tenetur autem cupiditate at necessitatibus eos repellat amet. Error, atque. Deleniti fugit molestias eligendi adipisci quasi perferendis distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates praesentium quis, ullam tenetur autem cupiditate at necessitatibus eos repellat amet. Error, atque. Deleniti fugit molestias eligendi adipisci quasi perferendis distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates praesentium quis, ullam tenetur autem cupiditate at necessitatibus eos repellat amet. Error, atque. Deleniti fugit molestias eligendi adipisci quasi perferendis distinctio..</p>
+            <p className="postDesc">{post.desc}</p>
         </div>
     )
 }
