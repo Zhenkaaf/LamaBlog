@@ -44,9 +44,10 @@ function App() {
 export default App; */
 
 
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useContext } from 'react';
 import { Outlet, Routes, Route } from 'react-router-dom';
 import Topbar from './components/topbar/Topbar';
+import { Context } from './context/Context';
 
 const Home = lazy(() => import('./pages/home/Home'));
 const Single = lazy(() => import('./pages/single/Single'));
@@ -65,7 +66,7 @@ const Layout = ({ children }) => {
 };
 
 function App() {
-  const user = false;
+  const { user } = useContext(Context);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
