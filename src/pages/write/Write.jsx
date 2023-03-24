@@ -27,13 +27,15 @@ export default function Write() {
             try {
                 await axios.post('/upload', data);
             } catch (err) {
-
+                console.error(err);
             }
         }
         try {
-           const res = axios.post('/posts', newPost);
+           const res = await axios.post('/posts', newPost);
            window.location.replace('/post/' + res.data._id);
-        } catch (err) { }
+        } catch (err) {
+            console.error(err);
+         }
     };
 
     return (
