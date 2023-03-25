@@ -19,6 +19,7 @@ export default function Login() {
                 password: passwordRef.current.value,
             });
             dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
+            console.log('LOGIN_SUCCESS', res.data);
             userRef.current.value = '';
             passwordRef.current.value = '';
         } catch (err) {
